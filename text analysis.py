@@ -21,10 +21,11 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 corpus = []
 for i in range(len(dataset)):
-    review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][i])
+    review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][i]) #sub function to remove letters other than alphabets
     review = review.lower();
     review = review.split();
     ps = PorterStemmer()
+    #stemming the words not in stopwords and adding to the review
     review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
     review = ' '.join(review)
     corpus.append(review)
